@@ -17,7 +17,9 @@ chrome.runtime.onInstalled.addListener(function () {
 
     chrome.webRequest.onSendHeaders.addListener(
       function (details) {
-        logHeader(details.requestHeaders, tokenHeaderName);
+        const authToken = getHeader(details.requestHeaders, tokenHeaderName);
+        console.log("Headers: ", authToken);
+        saveItem("authToken", authToken);
       },
       { urls: [`https://${woolworths}/*`, `http://${woolworths}/*`] },
       ["requestHeaders", "extraHeaders"]
@@ -25,7 +27,12 @@ chrome.runtime.onInstalled.addListener(function () {
 
     chrome.webRequest.onBeforeRequest.addListener(
       function (details) {
-        console.log("BODY: ", ab2str(details.requestBody.raw[0].bytes));
+        const rawBody = details.requestBody.raw;
+        if (rawBody.length > 0) {
+          const body = ab2str(rawBody[0].bytes);
+          saveItem("addItemBody", body);
+          console.log("SAVED BODY: ", body);
+        }
       },
       {
         urls: [
@@ -38,6 +45,12 @@ chrome.runtime.onInstalled.addListener(function () {
   });
 });
 
+function saveItem(key, value) {
+  chrome.storage.sync.set({ key: value }, function () {
+    console.log(`Saved item: KEY ${key}, VALUE: ${value}`);
+  });
+}
+
 function logHeader(headers, name) {
   for (var i = 0; i < headers.length; i++) {
     var header = headers[i];
@@ -45,6 +58,16 @@ function logHeader(headers, name) {
       console.log("Headers: ", header);
     }
   }
+}
+
+function getHeader(headers, name) {
+  for (var i = 0; i < headers.length; i++) {
+    var header = headers[i];
+    if (header.name.toLowerCase() == name.toLowerCase()) {
+      return header.value;
+    }
+  }
+  return null;
 }
 
 function ab2str(buf) {

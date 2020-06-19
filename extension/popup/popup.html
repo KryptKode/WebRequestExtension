@@ -3,10 +3,126 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AddList on WoolsWorth</title>
+    <title>Add List on WoolsWorth</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      /* Modal Structure */
+      html,
+      body {
+        font-family: "Open Sans", sans-serif;
+        font-size: 14px;
+        margin: 0;
+        min-height: 220px;
+        padding: 0;
+        width: 420px;
+      }
+
+      h1 {
+        font-family: "Menlo", monospace;
+        font-size: 20px;
+        font-weight: 300;
+        margin: 0;
+        color: #64a141;
+      }
+
+      a:link,
+      a:visited {
+        outline: 0;
+        text-decoration: none;
+      }
+
+      img {
+        width: 30px;
+      }
+
+      .modal-header {
+        align-items: center;
+        border-bottom: 0.5px solid #dadada;
+      }
+
+      .modal-content {
+        align-items: center;
+        padding: 0 22px;
+      }
+
+      .modal-icons {
+        border-top: 0.5px solid #dadada;
+
+        width: 100%;
+      }
+
+      .logo {
+        padding: 16px;
+      }
+
+      .logo-icon {
+        vertical-align: text-bottom;
+        margin-right: 12px;
+      }
+
+      .version {
+        color: #444;
+        font-size: 14px;
+      }
+
+      .flex-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 8px;
+        padding: 10px 14px;
+      }
+
+      .flex {
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+      }
+
+      .flex:hover {
+        opacity: 0.4;
+      }
+      .btn {
+        padding: 6px 10px;
+        color: #ffffff;
+        border-radius: 4px;
+      }
+
+      .btn-add {
+        background: #64a141;
+      }
+
+      .btn-view {
+        background: #bdbb52;
+      }
+    </style>
   </head>
   <body>
-    <p>Add list</p>
-    <script src="popup.js"></script>
+    <div class="modal-header">
+      <h1 class="logo">
+        <img class="logo-icon" src="../images/icon128.png" />Add List on
+        WoolsWorths
+      </h1>
+    </div>
+    <div class="modal-content">
+      <p>Easily add a list from one account to another</p>
+    </div>
+    <div class="modal-icons">
+      <div class="flex-container">
+        <div class="flex">
+          <a id="add-list" class="btn btn-add" href="#"
+            >Add list to this account</a
+          >
+        </div>
+
+        <div class="flex">
+          <a id="view-list" class="btn btn-view" href="#">View List</a>
+        </div>
+      </div>
+    </div>
   </body>
+  <script src="popup.js"></script>
 </html>
