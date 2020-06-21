@@ -9,96 +9,7 @@
       rel="stylesheet"
       type="text/css"
     />
-    <style>
-      /* Modal Structure */
-      html,
-      body {
-        font-family: "Open Sans", sans-serif;
-        font-size: 14px;
-        margin: 0;
-        min-height: 220px;
-        padding: 0;
-        width: 420px;
-      }
-
-      h1 {
-        font-family: "Menlo", monospace;
-        font-size: 20px;
-        font-weight: 300;
-        margin: 0;
-        color: #64a141;
-      }
-
-      a:link,
-      a:visited {
-        outline: 0;
-        text-decoration: none;
-      }
-
-      img {
-        width: 30px;
-      }
-
-      .modal-header {
-        align-items: center;
-        border-bottom: 0.5px solid #dadada;
-      }
-
-      .modal-content {
-        align-items: center;
-        padding: 0 22px;
-      }
-
-      .modal-icons {
-        border-top: 0.5px solid #dadada;
-
-        width: 100%;
-      }
-
-      .logo {
-        padding: 16px;
-      }
-
-      .logo-icon {
-        vertical-align: text-bottom;
-        margin-right: 12px;
-      }
-
-      .version {
-        color: #444;
-        font-size: 14px;
-      }
-
-      .flex-container {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        margin-top: 8px;
-        padding: 10px 14px;
-      }
-
-      .flex {
-        opacity: 1;
-        transition: opacity 0.2s ease-in-out;
-      }
-
-      .flex:hover {
-        opacity: 0.4;
-      }
-      .btn {
-        padding: 6px 10px;
-        color: #ffffff;
-        border-radius: 4px;
-      }
-
-      .btn-add {
-        background: #64a141;
-      }
-
-      .btn-view {
-        background: #bdbb52;
-      }
-    </style>
+    <link rel="stylesheet" href="popup.css" type="text/css" />
   </head>
   <body>
     <div class="modal-header">
@@ -113,15 +24,38 @@
     <div class="modal-icons">
       <div class="flex-container">
         <div class="flex">
-          <a id="add-list" class="btn btn-add" href="#"
-            >Add list to this account</a
-          >
+          <p id="add-list" class="btn btn-add">
+            Add list to this account
+          </p>
         </div>
 
         <div class="flex">
-          <a id="view-list" class="btn btn-view" href="#">View List</a>
+          <p id="view-list" class="btn btn-view">View List</p>
         </div>
       </div>
+    </div>
+    <div id="loader" class="loading-container" style="display: none;">
+      <div class="sk-chase">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+      </div>
+      <p>Adding...</p>
+    </div>
+
+    <div id="error" class="modal-content error-container">
+      <p id="error-text">An error occurred</p>
+    </div>
+    <div id="success" class="modal-content success-container">
+      <p id="success-text">Successful</p>
+    </div>
+    <div id="list-parent">
+      <pre id="list-content" style="display: none;">
+        Hello world
+      </pre>
     </div>
   </body>
   <script src="popup.js"></script>
